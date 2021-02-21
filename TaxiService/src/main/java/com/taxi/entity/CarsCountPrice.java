@@ -11,6 +11,15 @@ public class CarsCountPrice implements Serializable {
 	private CarType type;
 	private List<Car> cars;
 	private int price;
+	private int waitingTime;
+
+	public int getWaitingTime() {
+		return waitingTime;
+	}
+
+	public void setWaitingTime(int waitingTime) {
+		this.waitingTime = waitingTime;
+	}
 
 	public CarType getType() {
 		return type;
@@ -38,7 +47,7 @@ public class CarsCountPrice implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cars, price, type);
+		return Objects.hash(cars, price, type, waitingTime);
 	}
 
 	@Override
@@ -50,12 +59,14 @@ public class CarsCountPrice implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		CarsCountPrice other = (CarsCountPrice) obj;
-		return Objects.equals(cars, other.cars) && price == other.price && Objects.equals(type, other.type);
+		return Objects.equals(cars, other.cars) && price == other.price && Objects.equals(type, other.type)
+				&& waitingTime == other.waitingTime;
 	}
 
 	@Override
 	public String toString() {
-		return "\nCarsCountPrice [type=" + type + ",\ncars=" + cars + ",\nprice=" + price + "]";
+		return "CarsCountPrice [type=" + type + ", cars=" + cars + ", price=" + price + ", waitingTime=" + waitingTime
+				+ "]";
 	}
 
 }

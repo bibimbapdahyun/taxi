@@ -99,6 +99,7 @@ public class CommandContainer {
 		commands.put("finishOrder", new FinishOrder());
 		commands.put("changeAccountState", new GetAccountState());
 		commands.put("changeState", new ChangeAccountState());
+		commands.put("getChangeState", new GetChangeState());
 		
 		
 		

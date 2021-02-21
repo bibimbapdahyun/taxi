@@ -221,7 +221,7 @@ public class MySqlCarDao implements CarDao {
 	private static final String SELECT_CAR_STATE_BY_ACCOUNT = "SELECT * FROM car_state ";
 
 	@Override
-	public CarState getCarByAccount(Account account) throws SQLException {
+	public CarState getCarStateByAccount(Account account) throws SQLException {
 		CarState ct = new CarState();
 		try (Connection con = MySqlDAOFactory.getConnection();
 				PreparedStatement st = con.prepareStatement(SELECT_CAR_STATE_BY_ACCOUNT)) {
@@ -293,5 +293,10 @@ public class MySqlCarDao implements CarDao {
 			}
 		}
 
+	}
+
+	@Override
+	public String getCurrentPosition(Car car) {
+		return "Sothing get from db";
 	}
 }

@@ -20,6 +20,7 @@ public interface Path {
 	String GET_DRIVER_CONFIRM_ORDER = "controller?command=getDriverConfirmOrder";
 	String GET_DRIVER_ACTUAL_ORDER = "controller?command=getDriverActualOrder";
 	String CHANGE_ACCOUNT_STATE_CMD = "controller?command=changeAccountState";
+	String GET_CHANGE_STATE_CMD = "controller?command=getChangeState";
 
 	String GET_CAR_FORM_CMD = "controller?command=getCarForm";
 	
@@ -34,25 +35,26 @@ public interface Path {
 	//login
 	String LOGIN_FORM_JSP = "/WEB-INF/view/login/loginForm.jsp";
 	// admin
+	String CAR_FORM_JSP = "/WEB-INF/view/admin/carForm.jsp";
 	String ADMIN_CONFIG_PAGE = "/WEB-INF/view/admin/configurationPage.jsp";
-	String GET_STATISTICS_ORDER_JSP = "/WEB-INF/view/statisticsOrder.jsp";
 	String REGISTER_ACCOUNT_JSP = "/WEB-INF/view/admin/registerAccount.jsp";
 	String REGISTER_ACCOUNT_FORM_JSP = "/WEB-INF/view/admin/registerAccountForm.jsp";
 	
+	String GET_DRIVER_USER_PAGE = "/WEB-INF/view/driver/userPage.jsp";
+	String DRIVER_CONFIRM_ORDER = "/WEB-INF/view/driver/driverConfirmOrder.jsp";
+	
+	String GET_STATISTICS_ORDER_JSP = "/WEB-INF/view/statisticsOrder.jsp";
+	
+	String INDEX_JSP = "/WEB-INF/view/index.jsp";
+	
+	String SHOW_ERROR_PAGE ="/WEB-INF/view/error.jsp"; 
+	
+
+	//==============================================//
 	String FILTER_BY_ACCOUNT_JSP = "/WEB-INF/view/admin/filterByAccount.jsp";
 	String FILTER_BY_DATE_JSP = "/WEB-INF/view/admin/filterByDate.jsp";
 	String SORT_BY_PRICE_JSP = "/WEB-INF/view/admin/sortByPrice.jsp";
 	
-	String DRIVER_CONFIRM_ORDER = "/WEB-INF/view/driver/driverConfirmOrder.jsp";
-	String GET_DRIVER_USER_PAGE = "/WEB-INF/view/driver/userPage.jsp";
-	String GET_CHANGE_STATE = "/WEB-INF/view/driver/userPage.jsp";
-
-	String CAR_FORM_JSP = "/WEB-INF/view/admin/carForm.jsp";
-	
-	String SHOW_ERROR_PAGE ="/WEB-INF/view/error.jsp"; 
-	//==============================================//
-	
-	String INDEX_JSP = "/WEB-INF/view/index.jsp";
 	String RESPOSE_ORDER = "/WEB-INF/view/responseMessageOrder.jsp";
 	String SHOW_MESSAGE_FOR_USER = "/WEB-INF/view/showMessage.jsp";
 

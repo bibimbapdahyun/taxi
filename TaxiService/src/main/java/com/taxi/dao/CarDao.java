@@ -23,12 +23,14 @@ public interface CarDao {
 
 	List<Car> getCarsInOrder(int id) throws SQLException;
 
-	CarState getCarByAccount(Account account) throws SQLException;
+	CarState getCarStateByAccount(Account account) throws SQLException;
 	
 	Car getCarByAccountId(Account account) throws SQLException;
 
 	void changeStateId(CarState state, Car car) throws SQLException;
 
 	void createCar(Car car, Connection con) throws SQLException;
+
+	String getCurrentPosition(Car car);
 
 }

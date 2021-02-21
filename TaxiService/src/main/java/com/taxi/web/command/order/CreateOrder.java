@@ -18,12 +18,19 @@ import com.taxi.dao.OrderDao;
 import com.taxi.entity.Car;
 import com.taxi.entity.CarsCountPrice;
 import com.taxi.entity.Order;
+import com.taxi.function.DefineDistance;
+import com.taxi.function.Distance;
+import com.taxi.function.Time;
+import com.taxi.function.WaitingTime;
 import com.taxi.web.command.Command;
 import com.taxi.web.command.Path;
 
 public class CreateOrder extends Command {
 
 	private static final long serialVersionUID = 1359807440088307352L;
+
+	private static transient Time wTime = new WaitingTime();
+	private static transient Distance distance = new DefineDistance();
 
 	private static Logger log = LogManager.getLogger(CreateOrder.class);
 
@@ -49,27 +56,36 @@ public class CreateOrder extends Command {
 		List<Car> cars = new ArrayList<>();
 		try {
 			if (ccp != null) {
-				if (!ccp.isEmpty()) {
-					CarsCountPrice count = new CarsCountPrice();
-					for (CarsCountPrice c : ccp) {
-						if (c.getType().getType().equals(type)) {
-							count = c;
-							order.setType(count.getType());
-							log.debug("count: {}", count);
-							break;
-						}
+				CarsCountPrice count = new CarsCountPrice();
+				for (CarsCountPrice c : ccp) {
+					if (c.getType().getType().equals(type)) {
+						count = c;
+						order.setType(count.getType());
+						log.debug("count: {}", count);
+						break;
 					}
-					cars = count.getCars();
-					order.setPrice(count.getPrice());
-					log.debug("price: {}", order.getPrice());
 				}
+				cars = count.getCars();
+				order.setPrice(count.getPrice());
+				log.debug("price: {}", order.getPrice());
 			} else {
 				order.setType(((Car) session.getAttribute("Car")).getCarType());
 				cars.add((Car) session.getAttribute("Car"));
 				log.debug("Current Car: {}", cars);
 			}
+			int time = 0;
+			if (cars.size() > 1) {
+				List<Integer> times = new ArrayList<>();
+				for (Car car : cars) {
+					times.add(wTime.time(distance.getDistance(car.getCurrentPosition(), order.getStart())));
+				}
+				time = getMaxTime(times);
+			} else {
+				time = wTime.time(distance.getDistance(cars.get(0).getCurrentPosition(), order.getStart()));
+			}
 			odao.createOrder(order, cars);
 			session.setAttribute("cars", cars);
+			session.setAttribute("time", time);
 			session.setAttribute("order", order);
 			forward = Path.GET_ORDER_RECEIPT_CMD;
 			log.debug("session cars: {}", cars);
@@ -82,6 +98,16 @@ public class CreateOrder extends Command {
 		}
 		// was redirect
 		return forward;
+	}
+
+	private int getMaxTime(List<Integer> times) {
+		int t = 0;
+		for (Integer i : times) {
+			if (i > t) {
+				t = i;
+			}
+		}
+		return t;
 	}
 
 }

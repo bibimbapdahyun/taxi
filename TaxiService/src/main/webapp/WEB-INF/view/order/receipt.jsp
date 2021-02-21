@@ -16,6 +16,7 @@
 		<li><fmt:message key="receipt.places"/> ${order.places}</li>
 		<li><fmt:message key="receipt.price"/> ${order.price}</li>
 		<li><fmt:message key="receipt.car.type.${order.type.type}"/></li>
+		<li><fmt:message key="receipt.time"/>${time}</li>
 	</ul>
 	<c:choose>
 		<c:when test="${not empty Car && empty cars}">

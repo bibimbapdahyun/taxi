@@ -14,6 +14,16 @@ public class Car implements Serializable {
 	private Account account;
 	private CarState state;
 	private CarType carType;
+	private String currentPosition;
+
+
+	public String getCurrentPosition() {
+		return currentPosition;
+	}
+
+	public void setCurrentPosition(String currentPosition) {
+		this.currentPosition = currentPosition;
+	}
 
 	@Override
 	public int hashCode() {

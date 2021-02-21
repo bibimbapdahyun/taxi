@@ -14,12 +14,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.taxi.dao.CarDao;
-import com.taxi.dao.CarTypeDao;
 import com.taxi.dao.DAOFactory;
 import com.taxi.entity.Account;
 import com.taxi.entity.Car;
 import com.taxi.entity.CarState;
-import com.taxi.entity.CarType;
 
 public class ChangeAccountState extends Command {
 
@@ -42,14 +40,18 @@ public class ChangeAccountState extends Command {
 			Car car = cdao.getCarByAccountId(account);
 			CarState cs = car.getState();
 			log.debug("carType: {}", cs);
-			if(WAITING.equals(cs.getName())) {
-				log.debug(WAITING);
-				cdao.changeStateId(getCarState(INACTIVE, request), car);
+			if(INACTIVE.equals(cs.getName())) {
+				log.debug(INACTIVE);
+				cdao.changeStateId(getCarState(WAITING, request), car);
+				cs.setName(WAITING);
+				car.setState(cs);
 				session.setAttribute("car", car);
 				log.debug("car: {}", car);
 			}else {
-				log.debug(INACTIVE);
-				cdao.changeStateId(getCarState(WAITING, request), car);
+				log.debug(WAITING);
+				cdao.changeStateId(getCarState(INACTIVE, request), car);
+				cs.setName(INACTIVE);
+				car.setState(cs);
 				session.setAttribute("car", car);
 				log.debug("car: {}", car);
 			}
@@ -64,6 +66,7 @@ public class ChangeAccountState extends Command {
 		ServletContext sc = request.getServletContext();
 		CarState c = new CarState();
 		c.setName(str);
+		@SuppressWarnings("unchecked")
 		List<CarState> states = (List<CarState>) sc.getAttribute("carStates");
 		for(CarState cs : states) {
 			if(cs.getName().equals(c.getName())) {
@@ -73,5 +76,4 @@ public class ChangeAccountState extends Command {
 		}
 		return c;
 	}
-
 }
