@@ -1,0 +1,112 @@
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+
+.form-driver-confirm{
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+
+.table-form{
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+
+.car-form-container{
+  background-color: #fff;
+  padding: 30px 30px 0px 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+
+.validate-form-container{
+  background-color: #fff;
+  padding: 30px 30px 0px 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-form .form-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-form .form-btn {
+  position: relative;
+  top: -38px;
+  width: 50%;
+}
+
+.cancel-form .form-btn-28{
+  position: relative;
+  top: -28px;
+  width: 50%;
+}
+
+.cancel-form .form-btn-top-53{
+  width: 50%;
+  bottom: 53px;
+  position: relative;
+}
+
+.cancel-form .form-btn-10{
+  position: relative;
+  top: -10px;
+  width: 70%;
+}
+
+.cancel-form .width-btn{
+  width: 200px;
+}
+
+.form-btn-right {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+
+.container-background{
+  background-color: beige;
+}
+
+.register-car-btn{
+  display: flex;
+  width: 100%;
+  position: relative;
+  bottom: -16px;
+}
+
+.radio-font-size{
+  font-size: 25px;
+}
+
+.shift-top{
+  position: relative;
+  top: 10px;
+}
+
+.config-page-button-200-px{
+  width: 200px;
+}
+
+.shift-right{
+  right: -14px;
+  position: relative;
+  top: 5px;
+}
+
