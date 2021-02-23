@@ -13,7 +13,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
     
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -26,20 +26,20 @@
                     <c:forEach var="role" items="${accountRoles}">
                         <input class="form-check-input radio-font-size" type="radio" name="role" value="${role.role}" id="radioRole1" required/>
                         <label class="radio-font-size form-check-label" for="radioRole1">
-                            <fmt:message key="register.account.role.${role.role}"/>Role
+                            <fmt:message key="register.account.role.${role.role}"/>
                         </label>
                     </c:forEach>
                 
                     <input type="hidden" name="command" value="getRegisterAccountForm"/>
                     
                     <div class="mb-3 form-btn-right register-car-btn">
-                        <button class="btn btn-primary " type="submit"><fmt:message key="register.account.button.next"/>Register</button>
+                        <button class="btn btn-primary " type="submit"><fmt:message key="register.account.button.next"/></button>
                     </div>
                 </form>
                 <form class="cancel-form" action="controller" method="GET">
                     <input type="hidden" name="command" value="backToIndex">
                     <div class="col-12 form-btn width-btn">
-                        <button type="submit" class="btn btn-primary" ><fmt:message key="cancel.button"/>Back</button>
+                        <button type="submit" class="btn btn-primary" ><fmt:message key="cancel.button"/></button>
                     </div>
                 </form>
             </div>

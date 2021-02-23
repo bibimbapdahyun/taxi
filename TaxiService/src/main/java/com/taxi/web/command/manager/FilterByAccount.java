@@ -3,6 +3,8 @@ package com.taxi.web.command.manager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,8 @@ public class FilterByAccount extends Command {
 	private static final int LIMIT = 5;
 	private static final Logger log = LogManager.getLogger(FilterByAccount.class);
 
+	private static final String LOGIN_REGEX = "([0-9]+)";
+
 	/**
 	 * The method get all orders by account.
 	 */
@@ -46,6 +50,10 @@ public class FilterByAccount extends Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		clearSession(request.getSession());
+		String login = "login";
+		if(!checkParam(request.getParameter(login), LOGIN_REGEX)) {
+			return Path.GET_STATISTICS_PAGE;
+		}
 		int offset = Integer.parseInt(request.getParameter("page"));
 		HttpSession session = request.getSession();
 		request.setAttribute("cmd", request.getParameter("command"));
@@ -53,8 +61,8 @@ public class FilterByAccount extends Command {
 		String forward = Path.GET_ERROR_PAGE;
 		try {
 			Account account;
-			if (request.getParameter("login") != null) {
-				account = adao.getAccountByLogin(request.getParameter("login"));
+			if (request.getParameter(login) != null) {
+				account = adao.getAccountByLogin(request.getParameter(login));
 				session.setAttribute(FIND_ACCOUNT, account);
 			}else {
 				account = (Account) session.getAttribute(FIND_ACCOUNT);
@@ -83,6 +91,16 @@ public class FilterByAccount extends Command {
 		return forward;
 	}
 
+	private boolean checkParam(String parameter, String query) {
+		StringBuilder sb = new StringBuilder();
+		Pattern p = Pattern.compile(query);
+		Matcher m = p.matcher(parameter);
+		while(m.find()) {
+			sb.append(m.group());
+		}
+		return parameter.equals(sb.toString());
+	}
+	
 	private int calculatePageCount(int totalSize) {
 		if (totalSize % LIMIT == 0) {
 			return totalSize / LIMIT;

@@ -12,7 +12,7 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
     crossorigin="anonymous">
 
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -24,20 +24,20 @@
                 <form action="controller" method="get">
                     <input type="hidden" name="command" value="getDriverActualOrder">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="user.page.button.actual.order"/>Actual order</button>
+                        <button class="btn btn-primary" type="submit"><fmt:message key="user.page.button.actual.order"/></button>
                     </div>
                 </form>
             </c:if>
             <form action="controller" method="post">
                 <input type="hidden" name="command" value="changeState">
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="user.page.button.state.${car.state.name}"/>Change State</button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="user.page.button.state.${car.state.name}"/></button>
                 </div>
             </form>
             <form action="controller" method="post">
                 <input type="hidden" name="command" value="backToIndex">
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/>Back</button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/></button>
                 </div>
             </form>
         </div>

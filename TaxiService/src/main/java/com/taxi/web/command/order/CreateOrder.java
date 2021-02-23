@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import com.taxi.dao.DAOFactory;
 import com.taxi.dao.OrderDao;
 import com.taxi.entity.Car;
+import com.taxi.entity.CarType;
 import com.taxi.entity.CarsCountPrice;
 import com.taxi.entity.Order;
 import com.taxi.function.DefineDistance;
@@ -53,15 +54,7 @@ public class CreateOrder extends Command {
 		List<Car> cars = new ArrayList<>();
 		try {
 			if (ccp != null) {
-				CarsCountPrice count = new CarsCountPrice();
-				for (CarsCountPrice c : ccp) {
-					if (c.getType().getType().equals(type)) {
-						count = c;
-						order.setType(count.getType());
-						log.debug("count: {}", count);
-						break;
-					}
-				}
+				CarsCountPrice count = mapCount(ccp, request);
 				cars = count.getCars();
 				order.setPrice(count.getPrice());
 				log.debug("price: {}", order.getPrice());
@@ -95,6 +88,27 @@ public class CreateOrder extends Command {
 		}
 		// was redirect
 		return forward;
+	}
+
+	private CarsCountPrice mapCount(List<CarsCountPrice> ccp, HttpServletRequest req) {
+		CarsCountPrice count = null;
+		if (ccp.size() == 1) {
+			return ccp.get(0);
+		}
+		@SuppressWarnings("unchecked")
+		List<CarType> types = (List<CarType>) req.getServletContext().getAttribute("carTypes");
+		for (CarsCountPrice c : ccp) {
+			for (CarType t : types) {
+				if (t.equals(c.getType())) {
+					count = c;
+					break;
+				}
+			}
+			if(count != null) {
+				break;
+			}
+		}
+		return count;
 	}
 
 	private int getMaxTime(List<Integer> times) {

@@ -12,7 +12,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
     
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Create Order</title>
 </head>
 <body>
@@ -22,35 +22,35 @@
 
             <form action="controller" method="POST">
                 <div class="mb-3">
-                    <label for="exampleOrderStart" class="form-label"><fmt:message key="orderForm.start"/>Start</label>
-                    <input class="form-control" id="exampleOrderStart" type="text" name="from" placeholder="Start address" pattern="[A-Za-zА-Яа-яЁё]\,[A-Za-zА-Яа-яЁё0-9]\,[A-Za-zА-Яа-яЁё0-9]\,[0-9]"/>
+                    <label for="exampleOrderStart" class="form-label"><fmt:message key="orderForm.start"/></label>
+                    <input class="form-control" id="exampleOrderStart" type="text" name="from" placeholder="Start address" required pattern=".{5, 30}"/>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleOrderFinish" class="form-label"><fmt:message key="orderForm.finish"/>Finish</label>
-                    <input class="form-control" id="exampleOrderFinish"  type="text" name="to" placeholder="End address" pattern="[A-Za-zА-Яа-яЁё]{3,10}\,[A-Za-zА-Яа-яЁё0-9\s]{3,15}\,[A-Za-zА-Яа-яЁё0-9]{1,4}\,[0-9]{1,3}"/>
+                    <label for="exampleOrderFinish" class="form-label"><fmt:message key="orderForm.finish"/></label>
+                    <input class="form-control" id="exampleOrderFinish"  type="text" name="to" placeholder="End address" required pattern=".{5, 30}"/>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleOrderPlaces" class="form-label"><fmt:message key="orderForm.places"/>Places</label>
-                    <input id="exampleOrderPlaces" class="form-control" type="number" name="places" placeholder="Count of places"/>
+                    <label for="exampleOrderPlaces" class="form-label"><fmt:message key="orderForm.places"/></label>
+                    <input id="exampleOrderPlaces" class="form-control" type="number" name="places" placeholder="Count of places" required/>
                 </div>
                 
                 <c:forEach var="type" items="${carTypes}">
                     <div class="form-check form-check-inline">
-                        <input id="radioType" class="form-check-input" type="radio" name="type" value="${type.type}"/> 
+                        <input id="radioType" class="form-check-input" type="radio" name="type" value="${type.type}" required checked/> 
                         <label class="form-check-label" for="radioType">
-                            <fmt:message key="orderForm.car.type.${type.type }"/> type
+                            <fmt:message key="orderForm.car.type.${type.type}"/>
                         </label>
                     </div>
                 </c:forEach>
                 <input type="hidden" name="command" value="setOrder"/>
                 <div class="col-12 form-btn-right shift-top">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/>Next</button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/></button>
                 </div>
             </form>
             <form class="cancel-form" action="controller" method="post">
                 <input type="hidden" name="command" value="backToIndex">
                 <div class="col-12 form-btn-28">
-                    <button type="submit" class="btn btn-primary"><fmt:message key="receipt.button.back.to.index"/>Cacnel</button>
+                    <button type="submit" class="btn btn-primary"><fmt:message key="receipt.button.back.to.index"/></button>
                 </div>
             </form>
         </div>

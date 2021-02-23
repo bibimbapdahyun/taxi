@@ -13,7 +13,7 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
     crossorigin="anonymous">
     
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Configuration</title>
 </head>
 <body>
@@ -23,20 +23,20 @@
                 <form action="controller" method="get">
                     <input type="hidden" name="command" value="registerAccount">
                     <div class="form-btn">
-                        <button class="btn btn-primary config-page-button-200-px" type="submit"><fmt:message key="configuration.page.create.account"/>Register</button>
+                        <button class="btn btn-primary config-page-button-200-px" type="submit"><fmt:message key="configuration.page.create.account"/></button>
                     </div>
                 </form>
                 <form action="controller" method="get">
                     <input type="hidden" name="command" value="getStatistics">
                     <input type="hidden" name="page" value="1">
                     <div class="form-btn">
-                        <button class="btn btn-primary config-page-button-200-px" type="submit"><fmt:message key="configuration.page.get.statistics"/>Statistics</button>
+                        <button class="btn btn-primary config-page-button-200-px" type="submit"><fmt:message key="configuration.page.get.statistics"/></button>
                     </div>
                 </form>
                 <form class="cancel-form" action="controller" method="get">
                     <input type="hidden" name="command" value="backToIndex">
                     <div class="from-btn">
-                        <button class="btn btn-primary config-page-button-200-px" type="submit"><fmt:message key="receipt.button.back.to.index"/>Cancel</button>
+                        <button class="btn btn-primary config-page-button-200-px" type="submit"><fmt:message key="receipt.button.back.to.index"/></button>
                     </div>
                 </form>
                 

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +24,7 @@ import com.taxi.function.Hash;
 import com.taxi.function.ShaHash;
 import com.taxi.web.command.Command;
 import com.taxi.web.command.Path;
-/**
- * The method of class add user to db.
- * 
- * @author bibimbap
- *
- */
+
 public class RegisterUser extends Command {
 
 	private static final long serialVersionUID = 230935171363449573L;
@@ -36,10 +33,17 @@ public class RegisterUser extends Command {
 
 	private static final Logger log = LogManager.getLogger(RegisterUser.class);
 
+	/**
+	 * The method of class add user to db.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		clearSession(request);
+		if(!validate(request)) {
+			return Path.GET_REGISTER_FORM_JSP_CMD;
+		}
 		String forward = Path.GET_ERROR_PAGE;
 		try {
 			Account account = mapAccount(request);
@@ -61,6 +65,28 @@ public class RegisterUser extends Command {
 		}
 		return forward;
 	}
+
+	private static final String LOGIN_VALID = "([0-9]{12})";
+	private static final String NAME_VALID = "([A-ZА-ЯЭЁ][a-zа-яэё]+)";
+	
+	private boolean validate(HttpServletRequest request) {
+		if(!validRegex(request.getParameter("login"), LOGIN_VALID)) {
+			return false;
+		}
+		return validRegex(request.getParameter("password"), NAME_VALID);
+	}
+	
+	private boolean validRegex(String input, String regex) {
+		StringBuilder sb = new StringBuilder();
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(input);
+		if(m.find()) {
+			sb.append(m.group());
+		}
+		return input.contentEquals(sb.toString());
+	}
+
+
 
 	private void clearSession(HttpServletRequest request) {
 		HttpSession session = request.getSession();

@@ -12,7 +12,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
     
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="style/login.css">
 <title>Car Form</title>
 </head>
 <body>
@@ -21,35 +21,35 @@
         <div class="car-form-container">
             <form action="controller" method="post">
                 <div class="mb-3">
-                    <label for="exampleInputCarNumber2" class="form-label"><fmt:message key="car.form.number"/>Number</label>
-                    <input class="form-control" id="exampleInputCarNumber2" type="text" name="number" placeholder="AA0000BB">
+                    <label for="exampleInputCarNumber2" class="form-label"><fmt:message key="car.form.number"/></label>
+                    <input class="form-control" id="exampleInputCarNumber2" type="text" name="number" placeholder="AA0000BB" pattern="[A-Z]{2}[0-9]{4}[A-Z]{2}">
                 </div>
                 <div class="mb-3">
                     <fmt:message key="car.form.mark"/>
-                    <label for="exampleInputCarMark2" class="form-label"><fmt:message key="car.form.mark"/>Mark</label>
-                    <input class="form-control" id="exampleInputCarMark2" type="text" name="mark" placeholder="Dewo Lanos">
+                    <label for="exampleInputCarMark2" class="form-label"><fmt:message key="car.form.mark"/></label>
+                    <input class="form-control" id="exampleInputCarMark2" type="text" name="mark" placeholder="Dewo Lanos" pattern="[A-Z][a-z]+\s[A-Za-z]+">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPlaces2" class="form-label"><fmt:message key="car.form.places"/>Places</label>
+                    <label for="exampleInputPlaces2" class="form-label"><fmt:message key="car.form.places"/></label>
                     <input class="form-control" id="exampleInputPlaces2" type="number" name="place" placeholder="places">
                 </div>
                 <c:forEach var="type" items="${carTypes}">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" id="flexRadio1" type="radio" name="type" value="${type.type}">
                         <label class="form-check-label" for="flexRadio1">
-                            <fmt:message key="car.form.type.${type.type}"/> type
+                            <fmt:message key="car.form.type.${type.type}"/>
                         </label>
                     </div>
                 </c:forEach>
                 <input type="hidden" name="command" value="registerCar">
                 <div class="col-12 form-btn-right register-car-btn">
-                    <button type="submit" class="btn btn-primary"><fmt:message key="car.form.button.create"/>Create</button>
+                    <button type="submit" class="btn btn-primary"><fmt:message key="car.form.button.create"/></button>
                 </div>
             </form>
             <form class="cancel-form" action="controller" method="post">
                 <input type="hidden" name="command" value="backToIndex">
                 <div class="col-12 form-btn">
-                    <button type="submit" class="btn btn-primary"><fmt:message key="receipt.button.back.to.index"/>Cacnel</button>
+                    <button type="submit" class="btn btn-primary"><fmt:message key="receipt.button.back.to.index"/></button>
                 </div>
             </form>
         </div>

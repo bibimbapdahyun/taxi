@@ -11,7 +11,7 @@
     rel="stylesheet" 
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
     crossorigin="anonymous">
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Statistics</title>
 </head>
 <body>
@@ -23,43 +23,43 @@
 			<input type="hidden" name="command" value="getStatistics" />
 			<input type="hidden" name="page" value="1"/>
 			<div class="col-12">
-				<button class="btn btn-primary" type="submit"><fmt:message key="index.manager.statistics"/>Statistics</button>
+				<button class="btn btn-primary" type="submit"><fmt:message key="index.manager.statistics"/></button>
 			</div>
 		</form>
 		<form action="controller" method="get">
 			<div class="col-12">
 				<div class="form-check form-check-inline">
-					<label class="form-check-label" for="up1">Up<fmt:message key="statistics.up"/></label>
+					<label class="form-check-label" for="up1"><fmt:message key="statistics.up"/></label>
 					<input type="radio" name="sort" value="up" id="up1" class="form-check-input" checked/>
 				</div>
 				<div class="form-check form-check-inline">
 					<label class="form-check-label" for="down1"></label>
-					<input class="form-check-input" id="down1" type="radio" name="sort" value="down">Down<fmt:message key="statistics.down"/>
+					<input class="form-check-input" id="down1" type="radio" name="sort" value="down"><fmt:message key="statistics.down"/>
 				</div>
 				<input type="hidden" name="page" value="1"/>
 				<input type="hidden" name="command" value="sortByDate"/>
-				<button class="btn btn-primary" type="submit">Sort By Date<fmt:message key="statistics.sort.by.date"/></button>
+				<button class="btn btn-primary" type="submit"><fmt:message key="statistics.sort.by.date"/></button>
 			</div>
 		</form>
 		<form action="controller" method="get">
 			<div class="col-12">
 				<div class="form-check form-check-inline">
-					<label class="form-check-label" for="up2">Up<fmt:message key="statistics.up"/></label>
+					<label class="form-check-label" for="up2"><fmt:message key="statistics.up"/></label>
 					<input type="radio" name="sort" value="up" id="up2" class="form-check-input" checked/>
 				</div>
 				<div class="form-check form-check-inline">
 					<label class="form-check-label" for="down2"></label>
-					<input class="form-check-input" id="down2" type="radio" name="sort" value="down" >Down<fmt:message key="statistics.down"/>
+					<input class="form-check-input" id="down2" type="radio" name="sort" value="down"><fmt:message key="statistics.down"/>
 				</div>
 				<input type="hidden" name="page" value="1"/>
 				<input type="hidden" name="command" value="sortByPrice" /> 
-				<button class="btn btn-primary" type="submit">Sort By Price <fmt:message key="statistics.sort.by.price"/></button>
+				<button class="btn btn-primary" type="submit"><fmt:message key="statistics.sort.by.price"/></button>
 			</div>
 		</form>
 		<form action="controller" method="get">
 			<div class="mb-3 input-group">
 				<div class="input-group-prepend">
-					<button class="btn btn-primary" type="submit" >Filter By Date<fmt:message key="statistics.filter.by.date"/></button>
+					<button class="btn btn-primary" type="submit"><fmt:message key="statistics.filter.by.date"/></button>
 				</div>
 				<div class="col-10">
 					<label for="data" class="col-2">
@@ -72,7 +72,7 @@
 		<form action="controller" method="get">
 			<div class="mb-3 input-group">
 				<div class="input-group-prepend">
-					<button class="btn btn-primary" type="submit" >Filter By Account<fmt:message key="statistics.filter.by.account"/></button>
+					<button class="btn btn-primary" type="submit"><fmt:message key="statistics.filter.by.account"/></button>
 				</div>
 				<div class="col-10">
 					<label for="login" class="col-2">
@@ -87,8 +87,8 @@
 		<table class="table table-striped">
 			<thead>
 				<th></th>
-				<th><fmt:message key="validate.order.number"/>Id</th>
-				<th><fmt:message key="orderForm.start"/>Start Point</th>
+				<th><fmt:message key="validate.order.number"/></th>
+				<th><fmt:message key="orderForm.start"/></th>
 				<th><fmt:message key="orderForm.finish"/></th>
 				<th><fmt:message key="statistics.format.order.date"/></th>
 				<th><fmt:message key="receipt.price"/></th>
@@ -112,7 +112,7 @@
 						<td>${order.type.type}</td>
 					</tr>
 					<tr>
-						<th>Cars</th>
+						<th><fmt:message key="statistics.cars"></fmt:message> </th>
 						<c:forEach var="c" items="${order.car}">
 							<td>${c.carNumber}</td>
 							<td>${c.mark}</td>
@@ -179,7 +179,7 @@
 	<form action="controller" method="post">
 		<input type="hidden" name="command" value="backToIndex">
 		<div class="col-12">
-			<button class="btn btn-primary" type="submit">Back<fmt:message key="receipt.button.back.to.index"/></button>
+			<button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/></button>
 		</div>
 	</form>
 	

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Insert title here</title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
@@ -13,7 +13,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
     
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="style/login.css">
     
 </head>
 <body>
@@ -25,28 +25,28 @@
             <form class="login-form" action="controller" method="POST">
                 <input type="hidden" name="command" value="login">
                 <div class="mb-3">
-                    <label for="exampleInputTelephonNumber" class="form-label"><fmt:message key="loginFormJsp.login"/>Login</label>
-                    <input type="text" class="form-control" name="login" id="exampleInputTelephonNumber" required pattern="[0-9]{12}" placeholder="38 (111) 111 11 11">
+                    <label for="exampleInputTelephonNumber" class="form-label"><fmt:message key="loginFormJsp.login"/></label>
+                    <input type="text" class="form-control" name="login" id="exampleInputTelephonNumber" required pattern="[0-9]{12}" placeholder="38 111 111 11 11">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label"><fmt:message key="loginFormJsp.password"/>Password</label>
-                    <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
+                    <label for="exampleInputPassword1" class="form-label"><fmt:message key="loginFormJsp.password"/></label>
+                    <input type="password" class="form-control" name="password" id="exampleInputPassword1" required pattern=".{3,15}">
                 </div>
                 <div class="form-btn">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary"><fmt:message key="loginFormJsp.login"/></button>
                 </div>
             </form>
             <form class="cancel-form" action="controller" method="get">
                 <input type="hidden" name="command" value="getIndexJsp"/>
                 <div class="form-btn">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="cancel.button"/>Cancel</button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="cancel.button"/></button>
                 </div>
             </form>
             <div class="form-btn-right">
                 <form action="controller" method="get">
                     <input type="hidden" name="command" value="getRegisterForm"/>
                     <div class="col-12">
-                        <button  class="btn btn-primary" type="submit"><fmt:message key="loginFormJsp.button.register"/>Register</button>
+                        <button  class="btn btn-primary" type="submit"><fmt:message key="loginFormJsp.button.register"/></button>
                     </div>
                 </form>
             </div>

@@ -12,7 +12,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
     
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../style/login.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,15 +22,15 @@
             <c:if test="${not empty registerMessage}">${registerMessage}</c:if>
             <form action="controller" method="POST">
                 <div class="mb-3">
-                    <label for="exampleTelephoneNumberReg" class="form-label"><fmt:message key="registerForm.login"/>Login</label>
+                    <label for="exampleTelephoneNumberReg" class="form-label"><fmt:message key="registerForm.login"/></label>
                     <input type="text" class="form-control" id="exampleTelephoneNumberReg" name="login" placeholder="(066) 665 86 73" required pattern="[0-9]{12}"/><br>
                 </div>
                 <div class="mb-3">
-                    <label for="examplePasswdReg" class="form-label"><fmt:message key="registerForm.password"/>Password</label>
+                    <label for="examplePasswdReg" class="form-label"><fmt:message key="registerForm.password"/></label>
                     <input type="password" class="form-control" id="examplePasswdReg" name="password" required pattern="[A-Za-z0-9]{8,15}"/><br>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleNmaeReg" class="form-label"><fmt:message key="registerForm.name"/>Name</label>
+                    <label for="exampleNmaeReg" class="form-label"><fmt:message key="registerForm.name"/></label>
                     <input type="text" class="form-control" id="exampleNmaeReg" name="name" required placeholder="Ivan" pattern="[A-Za-zА-Яа-яЁё]{3,15}"/>
                 </div>
                 
@@ -38,7 +38,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" value="${gender.name}" id="flexRadioDefault1" required>
                         <label class="form-check-label" for="flexRadioDefault1">
-                            <fmt:message key="registerForm.gender.${gender.name}"/> Gender
+                            <fmt:message key="registerForm.gender.${gender.name}"/>
                         </label>
                     </div>
                     <!-- <input type="radio" name="gender" value="${gender.name}"/> <fmt:message key="registerForm.gender.${gender.name}"/> -->
@@ -46,20 +46,20 @@
                 
                 <input type="hidden" name="command" value="registerUser"/>
                 <div class="col-12 form-btn-right">
-                    <button type="submit" class="btn btn-primary" ><fmt:message key="registerForm.button.register"/>Register</button>
+                    <button type="submit" class="btn btn-primary" ><fmt:message key="registerForm.button.register"/></button>
                 </div>
             </form>
             <form class="cancel-form" action="controller" method="GET">
                 <input type="hidden" name="command" value="backToIndex">
                 <div class="col-12 form-btn">
-                    <button type="submit" class="btn btn-primary" ><fmt:message key="cancel.button"/>Back</button>
+                    <button type="submit" class="btn btn-primary" ><fmt:message key="cancel.button"/></button>
                 </div>
             </form>
             <form class="login-form" action="controller" method="GET">
                 <!-- Check command value-->
                 <input type="hidden" name="command" value="getLoginForm">
                 <div class="col-12 form-btn">
-                    <button type="submit" class="btn btn-primary"><fmt:message key="cancel.button"/>Login</button> 
+                    <button type="submit" class="btn btn-primary"><fmt:message key="cancel.button"/></button> 
                 </div>
             </form>
         </div>

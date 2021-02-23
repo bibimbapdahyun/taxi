@@ -12,7 +12,7 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
     crossorigin="anonymous">
 
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../style/login.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -29,7 +29,7 @@
                                 <th><fmt:message key="statistics.format.order.date"/></th>
                                 <th><fmt:message key="receipt.price"/></th>
                                 <th><fmt:message key="statistics.format.order.state"/></th>
-                                <th><fmt:message key="statistics.format.order.state"/>Action</th>
+                                <th><fmt:message key="statistics.format.order.state"/></th>
                             </thead>
                             <tr>
                                 <td>${order.id}</td>
@@ -42,7 +42,7 @@
                                     <form action="controller" method="get">
                                         <input type="hidden" name="command" value="finishOrder" /> 
                                         <div class="form-btn">
-                                            <button class="btn btn-primary" type="submit"><fmt:message key="driver.finish.order"/>Finish</button>
+                                            <button class="btn btn-primary" type="submit"><fmt:message key="driver.finish.order"/></button>
                                         </div>
                                     </form>
                                 </td>
@@ -57,14 +57,14 @@
                 <c:if test="${not empty orders}">
                     <table class="table talbe-striped">
                         <thead>
-                            <th><fmt:message key="validate.order.number"/>1</th>
-                            <th><fmt:message key="receipt.start"/>2</th>
-                            <th><fmt:message key="receipt.finish"/>3</th>
-                            <th><fmt:message key="statistics.format.order.date"/>4</th>
-                            <th><fmt:message key="receipt.price"/>5</th>
-                            <th><fmt:message key="validate.order.account.login"/>6</th>
-                            <th><fmt:message key="receipt.places"/>7</th>
-                            <th><fmt:message key="statistics.format.order.state"/>8</th>
+                            <th><fmt:message key="validate.order.number"/></th>
+                            <th><fmt:message key="receipt.start"/></th>
+                            <th><fmt:message key="receipt.finish"/></th>
+                            <th><fmt:message key="statistics.format.order.date"/></th>
+                            <th><fmt:message key="receipt.price"/></th>
+                            <th><fmt:message key="validate.order.account.login"/></th>
+                            <th><fmt:message key="receipt.places"/></th>
+                            <th><fmt:message key="statistics.format.order.state"/></th>
                         </thead>
                         <tbody>
                             <c:forEach var="order" items="${orders}">

@@ -12,65 +12,58 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
 
-<link rel="stylesheet"  href="../css/login.css">
+<link rel="stylesheet"  href="style/login.css">
 <title>Receipt</title>
 </head>
 <body>
     <div class="conteiner-fluid container-background">
         <div class="col-12 col-sm-6 col-md-3 form-wrapper">
             <div class="form-container">
-                <h3>Receipt {order.id} 5</h3>
-                <div class="table-form">
+                <h5><fmt:message key="receipt.order.id"/>${order.id}</h5>
                 <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Value</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><fmt:message key="receipt.start"/>start</th>
+                            <th scope="row"><fmt:message key="receipt.start"/></th>
                             <td>${order.start}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><fmt:message key="receipt.finish"/>finish</th>
+                            <th scope="row"><fmt:message key="receipt.finish"/></th>
                             <td> ${order.finish}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><fmt:message key="receipt.places"/>places</th>
+                            <th scope="row"><fmt:message key="receipt.places"/></th>
                             <td> ${order.places}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><fmt:message key="receipt.price"/>price</th>
-                            <td> ${order.price} 50$</td>
+                            <th scope="row"><fmt:message key="receipt.price"/></th>
+                            <td> ${order.price}</td>
                         </tr>
                         <tr>
                             <th scope="row">type</th>
                             <td><fmt:message key="receipt.car.type.${order.type.type}"/></td></tr>
                         <tr>
-                            <th scope="row"><fmt:message key="receipt.time"/>time</th>
-                            <td>${time} m</td></tr>
+                            <th scope="row"><fmt:message key="receipt.time"/></th>
+                            <td>${time}</td></tr>
                         </tr>
                         <c:choose>
                             <c:when test="${not empty Car && empty cars}">
                                 <tr>   
-                                    <th scope="row">number</th>
+                                    <th scope="row"></th>
                                     <td>${Car.carNumber}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">mark</th> 
+                                    <th scope="row"></th> 
                                     <td>${Car.mark}</td>
                                 </tr>
                             </c:when>
                             <c:when test="${empty Car && not empty cars}">
                                 <c:forEach var="car" items="${cars}">
                                     <tr>
-                                        <th scope="row">Car number</th>
+                                        <th scope="row"></th>
                                         <td>${Car.carNumber}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Mark</th>
+                                        <th scope="row"></th>
                                         <td>${Car.mark}</td>
                                     </tr>
                                 </c:forEach>
@@ -81,7 +74,7 @@
                 <form class="cancel-form" action="controller" method="post">
                     <input type="hidden" name="command" value="backToIndex"/>
                     <div class="col-12 form-btn-10">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/>Cancel</button>
+                        <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/></button>
                     </div>
                 </form>
             </div>

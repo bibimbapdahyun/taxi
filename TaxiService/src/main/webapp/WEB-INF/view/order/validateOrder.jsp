@@ -13,7 +13,7 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
     crossorigin="anonymous">
     
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Info Order</title>
 </head>
 <body>
@@ -32,26 +32,23 @@
                     <c:when test="${not empty ccp}">
                         <table class="table table-info">
                             <tr>
-                                <th>Order info:</th> 
-                            </tr>
-                            <tr>
-                                <th><fmt:message key="validate.order.account.login"/>Login</th>
+                                <th><fmt:message key="validate.order.account.login"/></th>
                                 <td>${order.account.login}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="receipt.start=Start"/>Start</th>
+                                <th><fmt:message key="receipt.start=Start"/></th>
                                 <td>${order.start}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="receipt.finish=Finish"/>Finish</th>
+                                <th><fmt:message key="receipt.finish=Finish"/></th>
                                 <td>${order.finish}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="receipt.places=Places"/>Places</th>
+                                <th><fmt:message key="receipt.places=Places"/></th>
                                 <td>${order.places}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="validate.order.number"/>Number</th>
+                                <th><fmt:message key="validate.order.number"/></th>
                                 <td>${order.type}</td>
                             </tr>
                             <tr><td>${message}</td></tr>
@@ -64,7 +61,7 @@
                                             <input type="radio" name="count" value="${count.type.type}">
                                         </div>    
                                     </td>
-                                    <th>${count.type.type}</th>
+                                    <th>${count.type.name}</th>
                                 </tr>
                                 <tr>
                                     <th><fmt:message key="validate.order.car.count"/></th>
@@ -82,9 +79,6 @@
                     </c:when>
                     <c:when test="${not empty Car}">
                         <table class="table table-info">
-                            <tr>
-                                <th>Order info:</th> 
-                            </tr>
                             <tr>
                                 <th><fmt:message key="receipt.start"/></th>
                                 <td>${order.start}</td>
@@ -119,13 +113,13 @@
                 <form class="cancel-form" action="controller" method="post">
                     <input type="hidden" name=command value="createOrder"> 
                     <div class="form-btn-right">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/>Create</button>
+                        <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/></button>
                     </div>
                 </form>
                 <form class="cancel-form" action="controller" method="post">
                     <input type="hidden" name="command" value="cancelOrder"> 
                     <div class="col-12 form-btn-top-53" >
-                        <button class="btn btn-primary" type="submit"><fmt:message key="cancel.button"/>Cancel</button>
+                        <button class="btn btn-primary" type="submit"><fmt:message key="cancel.button"/></button>
                     </div>
                 </form>
             </div>

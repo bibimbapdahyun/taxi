@@ -41,7 +41,7 @@ public class Login extends Command {
 		String forward = Path.GET_ERROR_PAGE;
 		try {
 			Hash hash = new ShaHash();
-			String login = request.getParameter("login");
+			String login = request.getParameter("login").trim();
 			log.debug("Login: {}", login);
 			String password = request.getParameter("password");
 			log.debug("Password: {}", password);

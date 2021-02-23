@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +12,23 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
     crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Insert title here</title>
 </head>
 <body>
     <div class="container-fluid container-background">
         <div class="col-12 col-sm-6 col-md-3 form-wrapper">
             <div class="form-container">
-                ${errorMessage}
+            	<c:if test="${empty errorMessage}">
+            		Something was wrong please reload page and try again.
+            	</c:if>
+            	<c:if test="${not empty errorMessage}">
+	                ${errorMessage}
+            	</c:if>
                 <form class="cancel-form" action="controller" method="get">
                     <input type="hidden" name="command" value="getIndexJsp"/>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="cancel.button"/>Cancel</button>
+                        <button class="btn btn-primary" type="submit"><fmt:message key="cancel.button"/></button>
                     </div>
                 </form>
             </div>

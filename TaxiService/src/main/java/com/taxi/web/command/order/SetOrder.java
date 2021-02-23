@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,13 +33,6 @@ import com.taxi.function.PriceCalculator;
 import com.taxi.web.command.Command;
 import com.taxi.web.command.Path;
 
-/**
- * The method of class set in session car, or if car not found get some car to
- * this order and if car not be found set in session message.
- * 
- * @author Anton Mishcheriakov
- *
- */
 public class SetOrder extends Command {
 	private static final long serialVersionUID = 1L;
 
@@ -49,16 +44,24 @@ public class SetOrder extends Command {
 
 	private static final Logger log = LogManager.getLogger(SetOrder.class);
 
+	/**
+	 * The method of class set in session car, or if car not found get some car to
+	 * this order and if car not be found set in session message.
+s	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		Order order = new Order();
+		if (!validate(request)) {
+			return Path.MAKE_ORDER_CMD;
+		}
 		String forward = Path.GET_ERROR_PAGE;
 		HttpSession session = request.getSession();
 		clearSession(session);
 		try {
-			order.setStart(request.getParameter("from"));
-			order.setFinish(request.getParameter("to"));
+			order.setStart(request.getParameter("from").trim());
+			order.setFinish(request.getParameter("to").trim());
 			order.setAccount((Account) session.getAttribute("account"));
 			if (order.getAccount().getLogin() == null) {
 				clearSession(session);
@@ -112,6 +115,25 @@ public class SetOrder extends Command {
 		log.debug("placesMessage: {}", session.getAttribute("placesMessage"));
 		log.debug("order: {}", session.getAttribute("order"));
 		return forward;
+	}
+
+	private static final String START_FINISH_VALIDATION = "([A-Za-z0-9\\,\\s]+)";
+
+	private boolean validate(HttpServletRequest request) {
+		if (!regex(request.getParameter("from"), START_FINISH_VALIDATION)) {
+			return false;
+		}
+		return regex(request.getParameter("from"), START_FINISH_VALIDATION);
+	}
+
+	private boolean regex(String input, String regex) {
+		StringBuilder sb = new StringBuilder();
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(input);
+		if (m.find()) {
+			sb.append(m.group());
+		}
+		return input.contentEquals(sb.toString());
 	}
 
 	private List<CarsCountPrice> mapCarsByType(Order order) throws SQLException {

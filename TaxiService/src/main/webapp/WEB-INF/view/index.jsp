@@ -12,7 +12,7 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
     crossorigin="anonymous">
     
-<link rel="stylesheet" href="style/login.css">
+<link rel="stylesheet" href="style/login.css" type="text/css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -24,19 +24,18 @@
 						<form action="controller" method="GET">
 							<input type="hidden" name="command" value="getRegisterForm">
 							<div class="col-12">
-								<button class="btn btn-primary" type="submit">Register<fmt:message key="index.no.loged.registration"/></button>
+								<button class="btn btn-primary" type="submit"><fmt:message key="index.no.loged.registration"/></button>
 							</div>
 						</form>	
 						<form action="controller" method="GET">
 							<input type="hidden" name="command" value="getLoginForm">
 							<div class="col-12">
-								<button class="btn btn-primary" type="submit">Login<fmt:message key="loginFormJsp.login"/></button>
+								<button class="btn btn-primary" type="submit"><fmt:message key="loginFormJsp.login"/></button>
 							</div>
 						</form>	
 					</c:when>
 					<c:when test="${not empty account}">
-						<!-- TODO class-->
-							${account.login} login
+						${account.login}
 					</c:when>
 				</c:choose>
 				<c:if test="${sessionScope.account.role.role == 'driver'}">
@@ -44,13 +43,13 @@
 						<input type="hidden" name="command" value="getDriverActualOrder">
 						<input type="hidden" name="page" value="1">
 						<div class="col-12">
-							<button class="btn btn-primary" type="submit">Actual Order<fmt:message key="index.driver.confirm.order"/></button>
+							<button class="btn btn-primary" type="submit"><fmt:message key="index.driver.confirm.order"/></button>
 						</div>
 					</form>	
 					<form action="controller" method="GET">
 						<input type="hidden" name="command" value="changeAccountState">
 						<div class="col-12">
-							<button class="btn btn-primary" type="submit">Change State<fmt:message key="index.driver.change.state"/></button>
+							<button class="btn btn-primary" type="submit"><fmt:message key="index.driver.change.state"/></button>
 						</div>
 					</form>	
 				</c:if>
@@ -58,7 +57,7 @@
 					<form action="controller" method="GET">
 						<input type="hidden" name="command" value="logout">
 						<div class="col-12">
-							<button class="btn btn-primary" type="submit"><fmt:message key="index.button.logout"/>Logout</button>
+							<button class="btn btn-primary" type="submit"><fmt:message key="index.button.logout"/></button>
 						</div>
 					</form>
 				</c:if>
@@ -66,7 +65,7 @@
 					<form action="controller" method="GET">
 						<input type="hidden" name="command" value="makeOrder">
 						<div class="col-12">
-							<button class="btn btn-primary" type="submit">Make Order</button>
+							<button class="btn btn-primary" type="submit"><fmt:message key="index.make.order"/></button>
 						</div>
 					</form>	
 				</c:if>
@@ -74,7 +73,7 @@
 					<form action="controller" method="GET">
 						<input type="hidden" name="command" value="getConfigPage">
 						<div class="col-12">
-							<button class="btn btn-primary" type="submit"><fmt:message key="index.admin.config"/>Config</button>
+							<button class="btn btn-primary" type="submit"><fmt:message key="index.admin.config"/></button>
 						</div>
 					</form>	
 				</c:if>
@@ -82,44 +81,47 @@
 					<form action="controller" method="GET">
 						<input type="hidden" name="command" value="getStatisticsOrder">
 						<div class="col-12">
-							<button class="btn btn-primary" type="submit"><fmt:message key="index.manager.statistics"/>Statistic</button>
+							<button class="btn btn-primary" type="submit"><fmt:message key="index.manager.statistics"/></button>
 						</div>
 					</form>	
 				</c:if>
-				<p><fmt:message key="index.locale"/>Locale</p>
-				<div class="btn-group">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-						Locale
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						<c:forEach var="localeName" items="${locales}">
-							<a class="dropdown-item" href="controller?command=updateLocale&localeName=${localeName}">${localeName}Locale</a>
-						</c:forEach>
-					</ul>
-				</div>
+				<form id="settings_form" action="controller" method="get">
+					<input type="hidden" name="command" value="updateLocale" />
+						<div>
+							<p><fmt:message key="index.locale"/></p>
+							<select name="localeToSet">
+								<c:choose>
+									<c:when test="${not empty defaultLocale}">
+										<option value="">${defaultLocale}[Default]</option>
+									</c:when>
+									<c:otherwise>
+										<option value=""/>
+									</c:otherwise>
+								</c:choose>
+								<c:forEach var="localeName" items="${locales}">
+									<option value="${localeName}">${localeName}</option>							
+								</c:forEach>
+							</select>
+						</div>
+					<div class="col-12">
+						<button class="btn btn-primary" type="submit"><fmt:message key="index.button.locale.update"/></button><br/>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	<!-- <form id="settings_form" action="controller" method="get">
-		<input type="hidden" name="command" value="updateLocale" />
-			<div>
-				<p><fmt:message key="index.locale"/></p>
-				<select name="localeToSet">
-					<c:choose>
-						<c:when test="${not empty defaultLocale}">
-							<option value="">${defaultLocale}[Default]</option>
-						</c:when>
-						<c:otherwise>
-							<option value=""/>
-						</c:otherwise>
-					</c:choose>
-					<c:forEach var="localeName" items="${locales}">
-						<option value="${localeName}">${localeName}</option>							
-					</c:forEach>
-				</select>
-			</div>
-		<input type="submit" value='<fmt:message key="index.button.locale.update"/>'><br/>
-	</form>  -->
+	<%-- <p><fmt:message key="index.locale"/>Locale</p>
+	<div class="btn-group">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+			Locale
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+			<c:forEach var="localeName" items="${locales}">
+				<a class="dropdown-item" href="controller?command=updateLocale&localeName=${localeName}">${localeName}Locale</a>
+			</c:forEach>
+		</ul> 
+	</div> --%>
+	
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" 

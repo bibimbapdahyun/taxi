@@ -12,8 +12,8 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
 
-<link rel="stylesheet" href="../css/login.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="style/login.css">
+<title>Register Form</title>
 </head>
 <body>
 ${errorMessage}
@@ -22,43 +22,43 @@ ${errorMessage}
         <div class="car-form-container">
             <form action="controller" method="post">
                 <div class="mb-3">
-                    <label for="exampleTelephoneNumberReg" class="form-label"><fmt:message key="validate.order.account.login"/>Login</label>
+                    <label for="exampleTelephoneNumberReg" class="form-label"><fmt:message key="validate.order.account.login"/></label>
                     <input type="text" class="form-control" id="exampleTelephoneNumberReg" name="login" placeholder="(066) 665 86 73" required pattern="[0-9]{12}"/>
                 </div>
                 <div class="mb-3">
-                    <label for="examplePasswdReg" class="form-label"><fmt:message key="register.manager.form.password"/>Password</label>
-                    <input type="password" class="form-control" id="examplePasswdReg" name="password" required/>
+                    <label for="examplePasswdReg" class="form-label"><fmt:message key="register.manager.form.password"/></label>
+                    <input type="password" class="form-control" id="examplePasswdReg" name="password" required pattern=".{3,15}"/>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleMailReg" class="form-label"><fmt:message key="register.manager.form.mail"/>Mail</label>
+                    <label for="exampleMailReg" class="form-label"><fmt:message key="register.manager.form.mail"/></label>
                     <input id="exampleMailReg" class="form-control" type="email" name="mail" placeholder="something@gmail.com"/> 
                 </div>
                 <div class="mb-3">
-                    <label for="exampleNmaeReg" class="form-label"><fmt:message key="register.manager.form.name"/>Name</label>
-                    <input type="text" class="form-control" id="exampleNmaeReg" name="name" required placeholder="Ivan"/>
+                    <label for="exampleNmaeReg" class="form-label"><fmt:message key="register.manager.form.name"/></label>
+                    <input type="text" class="form-control" id="exampleNmaeReg" name="name" required placeholder="Ivan" pattern="[A-ZА-Я][a-zа-я]+"/>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleSurNmaeReg" class="form-label"><fmt:message key="register.manager.form.surname"/>Surname</label>
-                    <input type="text" class="form-control" id="exampleSurNmaeReg" name="surname" placeholder="Ivanov"/> 
+                    <label for="exampleSurNmaeReg" class="form-label"><fmt:message key="register.manager.form.surname"/></label>
+                    <input type="text" class="form-control" id="exampleSurNmaeReg" name="surname" placeholder="Ivanov" pattern="[A-ZА-Я][a-zа-я]+"/> 
                 </div>
                 
                 <c:forEach var="gender" items="${genders}">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="g" value="${gender.name}" id="flexRadioDefault1" required>
                         <label class="form-check-label" for="flexRadioDefault1">
-                            <fmt:message key="registerForm.gender.${gender.name}"/> Gender
+                            <fmt:message key="registerForm.gender.${gender.name}"/>
                         </label>
                     </div>
                 </c:forEach>
                 <input type="hidden" name="command" value="createAccount"/>
                 <div class="col-12 form-btn-right shift-top">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="configuration.page.create.account"/>Create</button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="configuration.page.create.account"/></button>
                 </div>
             </form>
             <form class="cancel-form" action="controller" method="get">
                 <input type="hidden" name="command" value="backToIndex"/>
                 <div class="col-12 form-btn-28">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/>Cancel</button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/></button>
                 </div>
             </form>
         </div>
