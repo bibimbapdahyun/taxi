@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetCarForm extends Command {
 
+	private static final long serialVersionUID = 6238689733709677820L;
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

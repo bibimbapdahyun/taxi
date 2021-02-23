@@ -38,6 +38,10 @@ public class FilterByAccount extends Command {
 	private static final int LIMIT = 5;
 	private static final Logger log = LogManager.getLogger(FilterByAccount.class);
 
+	/**
+	 * The method get all orders by account.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

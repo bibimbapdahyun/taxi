@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class CarState implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 9207905737905213677L;
 
 	int id;
 	String name;

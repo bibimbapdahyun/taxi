@@ -30,6 +30,10 @@ public class SortByPrice extends Command {
 
 	private static final long serialVersionUID = 6384423604290636287L;
 
+	/**
+	 * The method gets and set order in session by limit and sorted by price.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

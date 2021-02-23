@@ -35,10 +35,7 @@ public class CreateOrder extends Command {
 	private static Logger log = LogManager.getLogger(CreateOrder.class);
 
 	/**
-	 * Get cars, order from session Create Order Set for order some cars
-	 * (Transaction) Clear session
-	 * 
-	 * 
+	 * Add order to database, and create receipt.
 	 */
 
 	@Override

@@ -31,6 +31,10 @@ public class SortByDate extends Command {
 	private static final int LIMIT = 5;
 	private static final Logger log = LogManager.getLogger(SortByDate.class);
 
+	/**
+	 * The method get and set order to session by limit sorted by date.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

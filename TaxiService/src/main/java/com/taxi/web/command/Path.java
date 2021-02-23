@@ -49,19 +49,19 @@ public interface Path {
 	
 	String SHOW_ERROR_PAGE ="/WEB-INF/view/error.jsp"; 
 	
-
-	//==============================================//
-	String FILTER_BY_ACCOUNT_JSP = "/WEB-INF/view/admin/filterByAccount.jsp";
-	String FILTER_BY_DATE_JSP = "/WEB-INF/view/admin/filterByDate.jsp";
-	String SORT_BY_PRICE_JSP = "/WEB-INF/view/admin/sortByPrice.jsp";
-	
-	String RESPOSE_ORDER = "/WEB-INF/view/responseMessageOrder.jsp";
-	String SHOW_MESSAGE_FOR_USER = "/WEB-INF/view/showMessage.jsp";
-
-	// Command
-	
-	String SHOW_ORDER_CMD = "controller?command=showOrder";
-	String CANCEL_ORDER_CMD = "controller?command=cancelOrder";
 	String SEND_MESSAGE_TO_ADMIN_CMD = "controller?command=sendMessageForAdmin";
+	String SHOW_MESSAGE_FOR_USER = "/WEB-INF/view/showMessage.jsp";
+	String FILTER_BY_ACCOUNT_JSP = "/WEB-INF/view/admin/filterByAccount.jsp";
+	
+	//==============================================//
+//	String FILTER_BY_DATE_JSP = "/WEB-INF/view/admin/filterByDate.jsp";
+//	String SORT_BY_PRICE_JSP = "/WEB-INF/view/admin/sortByPrice.jsp";
+//	
+//	String RESPOSE_ORDER = "/WEB-INF/view/responseMessageOrder.jsp";
+//
+//	// Command
+//	
+//	String SHOW_ORDER_CMD = "controller?command=showOrder";
+//	String CANCEL_ORDER_CMD = "controller?command=cancelOrder";
 	
 }

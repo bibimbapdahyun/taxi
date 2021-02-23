@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Account implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 236414962097068202L;
 
 	private int id;
 	private String login;
@@ -102,8 +102,8 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Account [login=" + login + ", password=" + password + ", role=" + role + ", mail=" + mail
-				+ ", name=" + name + ", surname=" + surname + "gender=" + gender + "]";
+		return "Account [login=" + login + ", role=" + role + ", mail=" + mail + ", name=" + name + ", surname="
+				+ surname + "gender=" + gender + "]";
 	}
 
 }

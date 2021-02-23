@@ -18,6 +18,11 @@ public class GetAccountState extends Command {
 
 	private static transient CarDao cdao = DAOFactory.getInstance().getCarDao();
 
+	/**
+	 * The method set in session current state of driver.
+	 * 
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

@@ -31,6 +31,13 @@ import com.taxi.function.PriceCalculator;
 import com.taxi.web.command.Command;
 import com.taxi.web.command.Path;
 
+/**
+ * The method of class set in session car, or if car not found get some car to
+ * this order and if car not be found set in session message.
+ * 
+ * @author Anton Mishcheriakov
+ *
+ */
 public class SetOrder extends Command {
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +46,6 @@ public class SetOrder extends Command {
 	private final transient Distance distance = new DefineDistance();
 	private final transient CarDao cdao = DAOFactory.getInstance().getCarDao();
 	private final transient CarTypeDao tdao = DAOFactory.getInstance().getTypeDao();
-	
 
 	private static final Logger log = LogManager.getLogger(SetOrder.class);
 
@@ -53,8 +59,8 @@ public class SetOrder extends Command {
 		try {
 			order.setStart(request.getParameter("from"));
 			order.setFinish(request.getParameter("to"));
-			order.setAccount((Account)session.getAttribute("account"));
-			if(order.getAccount().getLogin() == null) {
+			order.setAccount((Account) session.getAttribute("account"));
+			if (order.getAccount().getLogin() == null) {
 				clearSession(session);
 				session.setAttribute("orderMessage", "You need to login befor create order");
 				return Path.GET_LOGIN_FORM_CMD;
@@ -69,29 +75,29 @@ public class SetOrder extends Command {
 //				forward = Path.VALIDATE_ORDER_CMD;
 //				// TODO command realization
 //			} else {
-				log.debug("Now we in else block");
+			log.debug("Now we in else block");
 
-				Car car = cdao.getCarByTypePlaces(tdao.getTypeParameter(order.getType().getType()), order.getPlaces());
-				if (!car.equals(new Car())) {
-					log.debug("car not null");
-					int price = calc.calculate(distance.getDistance(order.getStart(), order.getFinish()),
-							tdao.getTypeParameter(order.getType().getType()));
-					order.setPrice(discount.discount(price));
-					session.setAttribute("Car", car);
+			Car car = cdao.getCarByTypePlaces(tdao.getTypeParameter(order.getType().getType()), order.getPlaces());
+			if (!car.equals(new Car())) {
+				log.debug("car not null");
+				int price = calc.calculate(distance.getDistance(order.getStart(), order.getFinish()),
+						tdao.getTypeParameter(order.getType().getType()));
+				order.setPrice(discount.discount(price));
+				session.setAttribute("Car", car);
+			} else {
+				log.debug("car is null");
+				List<CarsCountPrice> ccp = mapCarsByType(order);
+				if (ccp.isEmpty()) {
+					log.debug("cars not found");
+					session.setAttribute("carsNotFound", "Cars not found");
 				} else {
-					log.debug("car is null");
-					List<CarsCountPrice> ccp = mapCarsByType(order);
-					if (ccp.isEmpty()) {
-						log.debug("cars not found");
-						session.setAttribute("carsNotFound", "Cars not found");
-					} else {
-						session.setAttribute("message",
-								"We can't find one car for your order, but you can choose cars from option below");
-					}
-					session.setAttribute("ccp", ccp);
-					log.debug("ccp was set");
+					session.setAttribute("message",
+							"We can't find one car for your order, but you can choose cars from option below");
 				}
-				forward = Path.VALIDATE_ORDER_CMD;
+				session.setAttribute("ccp", ccp);
+				log.debug("ccp was set");
+			}
+			forward = Path.VALIDATE_ORDER_CMD;
 //			}
 			session.setAttribute("order", order);
 		} catch (SQLException e) {

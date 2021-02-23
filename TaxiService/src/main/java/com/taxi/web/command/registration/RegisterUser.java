@@ -22,7 +22,12 @@ import com.taxi.function.Hash;
 import com.taxi.function.ShaHash;
 import com.taxi.web.command.Command;
 import com.taxi.web.command.Path;
-
+/**
+ * The method of class add user to db.
+ * 
+ * @author bibimbap
+ *
+ */
 public class RegisterUser extends Command {
 
 	private static final long serialVersionUID = 230935171363449573L;

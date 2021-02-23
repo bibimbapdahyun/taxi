@@ -11,9 +11,13 @@ import com.taxi.web.command.Command;
 import com.taxi.web.command.Path;
 
 public class CancelOrder extends Command {
+	
+	private static final long serialVersionUID = 8185160203980036138L;
 
-	private static final long serialVersionUID = 1L;
-
+	/**
+	 * The method clear session and return to main page.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

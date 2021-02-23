@@ -12,7 +12,6 @@ import com.taxi.web.command.login.get.GetLoginForm;
 import com.taxi.web.command.manager.CreateAccount;
 import com.taxi.web.command.manager.FilterByAccount;
 import com.taxi.web.command.manager.FilterByDate;
-import com.taxi.web.command.manager.RegisterAccount;
 import com.taxi.web.command.manager.SortByDate;
 import com.taxi.web.command.manager.SortByPrice;
 import com.taxi.web.command.manager.get.GetConfigPage;
@@ -54,11 +53,9 @@ public class CommandContainer {
 		commands.put("getReceipt", new GetReceipt());
 		// cancel order and clear session
 		commands.put("cancelOrder", new CancelOrder());
-		// 
 		// back to main page
 		commands.put("backToIndex", new BackToIndex());
 		// if order too big send message for manager and manager need to call by number
-		// TODO implement command
 		commands.put("checkOutBigOrder", new CheckOutBigOrder());
 
 		// registration commands
@@ -92,7 +89,7 @@ public class CommandContainer {
 		commands.put("sortByPrice", new SortByPrice());
 		commands.put("getCarForm", new GetCarForm());
 		commands.put("registerCar", new RegisterCar());
-		
+
 		// driver
 		commands.put("getDriverActualOrder", new GetDriverActualOrder());
 		commands.put("getDriverConfirmOrder", new GetDriverConfirmOrder());
@@ -100,14 +97,10 @@ public class CommandContainer {
 		commands.put("changeAccountState", new GetAccountState());
 		commands.put("changeState", new ChangeAccountState());
 		commands.put("getChangeState", new GetChangeState());
-		
-		
-		
+
 		// manager command
 		commands.put("getStatisticsOrder", new GetStatisticsOrder());
 		commands.put("sortByDate", new SortByDate());
-		
-
 
 		commands.put("updateLocale", new UpdateLocale());
 		commands.put("noCommand", new NoCommand());

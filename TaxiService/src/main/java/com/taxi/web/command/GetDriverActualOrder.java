@@ -28,6 +28,11 @@ public class GetDriverActualOrder extends Command {
 	private static final Logger log = LogManager.getLogger(GetDriverActualOrder.class);
 	private static transient CarDao cdao = DAOFactory.getInstance().getCarDao();
 
+	/**
+	 * The method of class return actual order for driver and gives function to
+	 * finish this order. Also get all orders for this current driver in session.
+	 */
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

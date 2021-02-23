@@ -38,6 +38,10 @@ public class FilterByDate extends Command {
 
 	private static final int LIMIT = 5;
 
+	/**
+	 * The method get all orders by input date and current date.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

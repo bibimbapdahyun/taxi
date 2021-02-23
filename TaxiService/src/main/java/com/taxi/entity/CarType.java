@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class CarType implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = -8385136954543590316L;
+	
 	private int id;
 	private String type;
 	private int startPrice;

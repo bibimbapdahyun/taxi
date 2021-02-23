@@ -20,9 +20,7 @@ public class EncodingFilter implements Filter {
 	private String encoding;
 
 	public void destroy() {
-		log.debug("Filter destruction starts");
-		// do nothing
-		log.debug("Filter destruction finished");
+		// nothing
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response,

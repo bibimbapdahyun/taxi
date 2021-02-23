@@ -27,9 +27,14 @@ public class ChangeAccountState extends Command {
 	private static final long serialVersionUID = -7190734657530804273L;
 
 	private static final Logger log = LogManager.getLogger(ChangeAccountState.class);
-	
+
 	private static transient CarDao cdao = DAOFactory.getInstance().getCarDao();
-	
+
+	/**
+	 * The method, depending on the status, it changes to the opposite. If waiting
+	 * to inactive, if inactive to waiting
+	 */
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -40,14 +45,14 @@ public class ChangeAccountState extends Command {
 			Car car = cdao.getCarByAccountId(account);
 			CarState cs = car.getState();
 			log.debug("carType: {}", cs);
-			if(INACTIVE.equals(cs.getName())) {
+			if (INACTIVE.equals(cs.getName())) {
 				log.debug(INACTIVE);
 				cdao.changeStateId(getCarState(WAITING, request), car);
 				cs.setName(WAITING);
 				car.setState(cs);
 				session.setAttribute("car", car);
 				log.debug("car: {}", car);
-			}else {
+			} else {
 				log.debug(WAITING);
 				cdao.changeStateId(getCarState(INACTIVE, request), car);
 				cs.setName(INACTIVE);
@@ -56,7 +61,7 @@ public class ChangeAccountState extends Command {
 				log.debug("car: {}", car);
 			}
 			forward = Path.CHANGE_ACCOUNT_STATE_CMD;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return forward;
@@ -68,8 +73,8 @@ public class ChangeAccountState extends Command {
 		c.setName(str);
 		@SuppressWarnings("unchecked")
 		List<CarState> states = (List<CarState>) sc.getAttribute("carStates");
-		for(CarState cs : states) {
-			if(cs.getName().equals(c.getName())) {
+		for (CarState cs : states) {
+			if (cs.getName().equals(c.getName())) {
 				c = cs;
 				break;
 			}

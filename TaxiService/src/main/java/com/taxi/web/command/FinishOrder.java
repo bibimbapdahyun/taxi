@@ -16,6 +16,11 @@ public class FinishOrder extends Command {
 	private static final long serialVersionUID = 1679688213989921407L;
 
 	private static transient OrderDao odao = DAOFactory.getInstance().getOrderDao();
+	
+	/**
+	 * The method change state of order and car in database. Car becomes to new order. Order get status finished. 
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

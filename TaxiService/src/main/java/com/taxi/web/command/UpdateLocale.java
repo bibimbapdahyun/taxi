@@ -16,7 +16,11 @@ public class UpdateLocale extends Command {
 	private static final long serialVersionUID = 214644918376796588L;
 
 	private static final Logger log = LogManager.getLogger(UpdateLocale.class);
-	
+
+	/**
+	 * The class executes the command to change the locale.
+	 */
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -24,7 +28,7 @@ public class UpdateLocale extends Command {
 		if (localeToSet != null && !localeToSet.isEmpty()) {
 			HttpSession session = request.getSession();
 			log.debug("locale to update: {}", localeToSet);
-			Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", localeToSet);			
+			Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", localeToSet);
 		}
 		return Path.GET_INDEX_JSP_CMD;
 	}

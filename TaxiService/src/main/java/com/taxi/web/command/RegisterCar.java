@@ -20,6 +20,10 @@ public class RegisterCar extends Command {
 
 	private static AccountDao adao = DAOFactory.getInstance().getAccountDao();
 	
+	/**
+	 * The class add driver and car to database.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -30,8 +34,7 @@ public class RegisterCar extends Command {
 			adao.createDriver(car, account);
 			forward = Path.GET_INDEX_JSP_CMD;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.getSession().setAttribute("errorMessage", "Can't add driver. Try later.");
 		}
 		return forward;
 	}
@@ -47,6 +50,7 @@ public class RegisterCar extends Command {
 
 	private CarType getCarType(HttpServletRequest request) {
 		CarType ct = new CarType();
+		@SuppressWarnings("unchecked")
 		List<CarType> types = (List<CarType>) request.getServletContext().getAttribute("carTypes");
 		String type = request.getParameter("type");
 		for(CarType t : types) {

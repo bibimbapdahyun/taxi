@@ -30,6 +30,11 @@ public class CreateAccount extends Command {
 	private static final Logger log = LogManager.getLogger(CreateAccount.class);
 	private static final long serialVersionUID = -9161099608307654194L;
 
+	/**
+	 * The method add user to database by data input the administrator. If
+	 * registered user is driver also add car for this driver.
+	 */
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -92,6 +97,7 @@ public class CreateAccount extends Command {
 
 	private Role getRole(HttpServletRequest request) {
 		Role role = new Role();
+		@SuppressWarnings("unchecked")
 		List<Role> roles = (List<Role>) request.getServletContext().getAttribute("accountRoles");
 		log.debug("Roles: {}", roles);
 		for (Role r : roles) {

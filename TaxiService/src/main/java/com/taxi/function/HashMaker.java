@@ -2,8 +2,11 @@ package com.taxi.function;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * The class is used to generate password hashes to the database.
+ * @param args
+ */
 public class HashMaker {
-	
 	public static void main(String[] args) {
 		Hash hash = new ShaHash();
 		try {

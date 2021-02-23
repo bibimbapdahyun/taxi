@@ -29,6 +29,11 @@ public class Login extends Command {
 
 	private static AccountDao adao = DAOFactory.getInstance().getAccountDao();
 
+	/**
+	 * The method check user and password. If user is in the database and password
+	 * equals to password from database set account in session.
+	 */
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

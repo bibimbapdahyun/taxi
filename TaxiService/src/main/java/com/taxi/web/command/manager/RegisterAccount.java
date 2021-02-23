@@ -30,6 +30,10 @@ public class RegisterAccount extends Command {
 
 	private static AccountDao adao = DAOFactory.getInstance().getAccountDao();
 
+	/**
+	 * The method add user to database if user with input login is absent. Else return to registration page with message.
+	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
