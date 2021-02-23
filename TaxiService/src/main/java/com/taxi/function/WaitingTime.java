@@ -7,7 +7,7 @@ public class WaitingTime implements Time{
 	
 	@Override
 	public int time(int distance) {
-		return (distance > SPEED) ? distance / SPEED : (distance * MINUTES) / SPEED;
+		return (distance * MINUTES) / SPEED;
 	}
 
 }

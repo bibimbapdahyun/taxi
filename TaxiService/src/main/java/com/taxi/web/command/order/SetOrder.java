@@ -52,22 +52,18 @@ s	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		Order order = new Order();
-		if (!validate(request)) {
-			return Path.MAKE_ORDER_CMD;
-		}
-		String forward = Path.GET_ERROR_PAGE;
 		HttpSession session = request.getSession();
+		Order order = new Order();
+		Account account = (Account) session.getAttribute("account");
+//		if (!validate(request)) {
+//			return Path.MAKE_ORDER_CMD;
+//		}
+		String forward = Path.GET_ERROR_PAGE;
 		clearSession(session);
 		try {
+			order.setAccount(account);
 			order.setStart(request.getParameter("from").trim());
 			order.setFinish(request.getParameter("to").trim());
-			order.setAccount((Account) session.getAttribute("account"));
-			if (order.getAccount().getLogin() == null) {
-				clearSession(session);
-				session.setAttribute("orderMessage", "You need to login befor create order");
-				return Path.GET_LOGIN_FORM_CMD;
-			}
 			order.setPlaces(Integer.parseInt(request.getParameter("places")));
 			order.setType(tdao.getTypeParameter(request.getParameter("type")));
 			log.trace("Places = {}", order.getPlaces());
