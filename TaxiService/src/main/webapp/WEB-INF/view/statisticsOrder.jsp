@@ -68,6 +68,7 @@
 			</div>
 			<input type="hidden" name="command" value="filterByDate" /> 
 			<input type="hidden" name="page" value="1"/>
+			<input type="hidden" name="login" value="${sessionScope.login}"/>
 		</form>
 		<form action="controller" method="get">
 			<div class="mb-3 input-group">

@@ -12,7 +12,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
         crossorigin="anonymous">
     
-<link rel="stylesheet" href="../style/login.css">
+<link rel="stylesheet" href="style/login.css">
 <title>Insert title here</title>
 </head>
 <body>

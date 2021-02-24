@@ -56,6 +56,7 @@ public class CreateOrder extends Command {
 			if (ccp != null) {
 				CarsCountPrice count = mapCount(ccp, request);
 				cars = count.getCars();
+				order.setType(count.getType());
 				order.setPrice(count.getPrice());
 				log.debug("price: {}", order.getPrice());
 			} else {

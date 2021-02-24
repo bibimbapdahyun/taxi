@@ -55,9 +55,9 @@ s	 */
 		HttpSession session = request.getSession();
 		Order order = new Order();
 		Account account = (Account) session.getAttribute("account");
-//		if (!validate(request)) {
-//			return Path.MAKE_ORDER_CMD;
-//		}
+		if (!validate(request)) {
+			return Path.MAKE_ORDER_CMD;
+		}
 		String forward = Path.GET_ERROR_PAGE;
 		clearSession(session);
 		try {

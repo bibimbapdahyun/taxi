@@ -41,7 +41,9 @@ public class RegisterUser extends Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		clearSession(request);
+		HttpSession session = request.getSession();
 		if(!validate(request)) {
+			session.setAttribute("registerMessage", "Data is not valid. Try again");
 			return Path.GET_REGISTER_FORM_JSP_CMD;
 		}
 		String forward = Path.GET_ERROR_PAGE;
@@ -50,11 +52,11 @@ public class RegisterUser extends Command {
 			log.debug("account: {}", account);
 			if (adao.getIdByNumber(account.getLogin()) < 1) {
 				adao.addUser(account);
-				request.getSession().setAttribute("registerMessage",
+				session.setAttribute("registerMessage",
 						"Your accout was succsesfully created, please login.");
 				forward = Path.GET_LOGIN_FORM_CMD;
 			} else {
-				request.getSession().setAttribute("registerMessage",
+				session.setAttribute("registerMessage",
 						"User with this login already exist." + "Try another number, or connect with manager");
 				forward = Path.GET_REGISTER_FORM_JSP_CMD;
 			}
@@ -67,13 +69,13 @@ public class RegisterUser extends Command {
 	}
 
 	private static final String LOGIN_VALID = "([0-9]{12})";
-	private static final String NAME_VALID = "([A-ZА-ЯЭЁ][a-zа-яэё]+)";
+	private static final String NAME_VALID = "([A-ZА-ЯЁ][a-zа-яё]+)";
 	
 	private boolean validate(HttpServletRequest request) {
 		if(!validRegex(request.getParameter("login"), LOGIN_VALID)) {
 			return false;
 		}
-		return validRegex(request.getParameter("password"), NAME_VALID);
+		return validRegex(request.getParameter("name"), NAME_VALID);
 	}
 	
 	private boolean validRegex(String input, String regex) {

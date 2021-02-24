@@ -40,31 +40,39 @@ public class FilterByAccount extends Command {
 	private static final int LIMIT = 5;
 	private static final Logger log = LogManager.getLogger(FilterByAccount.class);
 
-	private static final String LOGIN_REGEX = "([0-9]+)";
+	private static final String LOGIN_REGEX = "([0-9]{12})";
 
 	/**
 	 * The method get all orders by account.
 	 */
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		clearSession(request.getSession());
 		String login = "login";
-		if(!checkParam(request.getParameter(login), LOGIN_REGEX)) {
-			return Path.GET_STATISTICS_PAGE;
+		HttpSession session = request.getSession();
+		String loginParam = request.getParameter(login);
+		if (session.getAttribute("login") == null || loginParam != null) {
+			if (!checkParam(loginParam, LOGIN_REGEX)) {
+				session.setAttribute("message", "login was incorect");
+				return Path.GET_STATISTICS_PAGE;
+			}
+			session.setAttribute("login", loginParam);
+		}else {
+			loginParam = (String) session.getAttribute("login");
 		}
 		int offset = Integer.parseInt(request.getParameter("page"));
-		HttpSession session = request.getSession();
+		request.setAttribute("login", loginParam);
 		request.setAttribute("cmd", request.getParameter("command"));
 		request.setAttribute("page", request.getParameter("page"));
 		String forward = Path.GET_ERROR_PAGE;
 		try {
 			Account account;
-			if (request.getParameter(login) != null) {
-				account = adao.getAccountByLogin(request.getParameter(login));
+			if (loginParam != null) {
+				account = adao.getAccountByLogin(loginParam);
 				session.setAttribute(FIND_ACCOUNT, account);
-			}else {
+			} else {
 				account = (Account) session.getAttribute(FIND_ACCOUNT);
 			}
 			int totalSize = odao.getCountOfOrdersByAccount(account.getId());
@@ -95,12 +103,12 @@ public class FilterByAccount extends Command {
 		StringBuilder sb = new StringBuilder();
 		Pattern p = Pattern.compile(query);
 		Matcher m = p.matcher(parameter);
-		while(m.find()) {
+		while (m.find()) {
 			sb.append(m.group());
 		}
 		return parameter.equals(sb.toString());
 	}
-	
+
 	private int calculatePageCount(int totalSize) {
 		if (totalSize % LIMIT == 0) {
 			return totalSize / LIMIT;
@@ -117,6 +125,7 @@ public class FilterByAccount extends Command {
 
 	private void clearSession(HttpSession session) {
 		session.removeAttribute(ERROR_MESSAGE);
+		session.removeAttribute("message");
 		session.removeAttribute(ORDER);
 
 	}
