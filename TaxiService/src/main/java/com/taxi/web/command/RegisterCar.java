@@ -79,8 +79,8 @@ public class RegisterCar extends Command {
 
 	private Car mapCar(HttpServletRequest request) {
 		Car car = new Car();
-		car.setCarNumber(request.getParameter("number"));
-		car.setMark(request.getParameter("mark"));
+		car.setCarNumber(request.getParameter("number").trim());
+		car.setMark(request.getParameter("mark").trim());
 		car.setPlaces(Integer.parseInt(request.getParameter("place")));
 		car.setCarType(getCarType(request));
 		return car;

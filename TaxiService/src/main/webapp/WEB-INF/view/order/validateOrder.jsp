@@ -36,20 +36,20 @@
                                 <td>${order.account.login}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="receipt.start=Start"/></th>
+                                <th><fmt:message key="receipt.start"/></th>
                                 <td>${order.start}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="receipt.finish=Finish"/></th>
+                                <th><fmt:message key="receipt.finish"/></th>
                                 <td>${order.finish}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="receipt.places=Places"/></th>
+                                <th><fmt:message key="receipt.places"/></th>
                                 <td>${order.places}</td>
                             </tr>
                             <tr>
-                                <th><fmt:message key="validate.order.number"/></th>
-                                <td>${order.type}</td>
+                                <th><fmt:message key="order.type"/></th>
+                                <td>${order.type.type}</td>
                             </tr>
                             <tr><td>${message}</td></tr>
                         </table>
@@ -61,7 +61,7 @@
                                             <input type="radio" name="count" value="${count.type.type}">
                                         </div>    
                                     </td>
-                                    <th>${count.type.name}</th>
+                                    <th>${count.type.type}</th>
                                 </tr>
                                 <tr>
                                     <th><fmt:message key="validate.order.car.count"/></th>
@@ -73,6 +73,12 @@
                                 </tr>
                             </table>
                         </c:forEach>
+		                <form class="cancel-form" action="controller" method="post">
+		                    <input type="hidden" name=command value="createOrder"> 
+		                    <div class="form-btn-right">
+		                        <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/></button>
+		                    </div>
+		                </form>
                     </c:when>
                     <c:when test="${empty Car && empty cpp}">
                         ${carsNotFound}
@@ -108,17 +114,17 @@
                                 <td>${order.price}</td>
                             </tr>
                         </table>
+		                <form class="cancel-form" action="controller" method="post">
+		                    <input type="hidden" name=command value="createOrder"> 
+		                    <div class="form-btn-right">
+		                        <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/></button>
+		                    </div>
+		                </form>
                     </c:when>
                 </c:choose>
                 <form class="cancel-form" action="controller" method="post">
-                    <input type="hidden" name=command value="createOrder"> 
-                    <div class="form-btn-right">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/></button>
-                    </div>
-                </form>
-                <form class="cancel-form" action="controller" method="post">
                     <input type="hidden" name="command" value="cancelOrder"> 
-                    <div class="col-12 form-btn-top-53" >
+                    <div class="col-12 form-btn-38" >
                         <button class="btn btn-primary" type="submit"><fmt:message key="cancel.button"/></button>
                     </div>
                 </form>

@@ -23,11 +23,11 @@
             <form action="controller" method="POST">
                 <div class="mb-3">
                     <label for="exampleOrderStart" class="form-label"><fmt:message key="orderForm.start"/></label>
-                    <input class="form-control" id="exampleOrderStart" type="text" name="from" placeholder="Start address" required pattern=".{5, 30}"/>
+                    <input class="form-control" id="exampleOrderStart" type="text" name="from" placeholder="Start address" required pattern="[A-Za-zА-Яа-яЁё,]{5,30}"/>
                 </div>
                 <div class="mb-3">
                     <label for="exampleOrderFinish" class="form-label"><fmt:message key="orderForm.finish"/></label>
-                    <input class="form-control" id="exampleOrderFinish"  type="text" name="to" placeholder="End address" required pattern=".{5, 30}"/>
+                    <input class="form-control" id="exampleOrderFinish"  type="text" name="to" placeholder="End address" required pattern="[A-Za-zА-Яа-яЁё,]{5,30}"/>
                 </div>
                 <div class="mb-3">
                     <label for="exampleOrderPlaces" class="form-label"><fmt:message key="orderForm.places"/></label>
@@ -47,7 +47,7 @@
                     <button class="btn btn-primary" type="submit"><fmt:message key="orderForm.button.set.order"/></button>
                 </div>
             </form>
-            <form class="cancel-form" action="controller" method="post">
+            <form class="cancel-form form-cancel-center" action="controller" method="post">
                 <input type="hidden" name="command" value="backToIndex">
                 <div class="col-12 form-btn-28">
                     <button type="submit" class="btn btn-primary"><fmt:message key="receipt.button.back.to.index"/></button>

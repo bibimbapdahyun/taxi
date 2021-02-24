@@ -19,7 +19,7 @@
 <div class="container-fluid container-background">
     <div class="col-12 col-sm-6 col-md-3 form-wrapper">
         <div class="form-container">
-            <fmt:message key="user.page.current.state"/> ${car.state.name}
+            <fmt:message key="user.page.current.state"/><fmt:message key="user.page.button.state.${car.state.name}"/>
             <c:if test="${car.state.name eq 'waiting'}">
                 <form action="controller" method="get">
                     <input type="hidden" name="command" value="getDriverActualOrder">
@@ -31,7 +31,7 @@
             <form action="controller" method="post">
                 <input type="hidden" name="command" value="changeState">
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="submit"><fmt:message key="user.page.button.state.${car.state.name}"/></button>
+                    <button class="btn btn-primary" type="submit"><fmt:message key="user.page.button.change.state"/></button>
                 </div>
             </form>
             <form action="controller" method="post">

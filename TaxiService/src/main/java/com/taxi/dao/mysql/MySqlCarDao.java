@@ -201,15 +201,18 @@ public class MySqlCarDao implements CarDao {
 		List<Car> cars = new ArrayList<>();
 		try (Connection con = MySqlDAOFactory.getConnection();
 				PreparedStatement st = con.prepareStatement(
-						"SELECT car.car_number,car.mark FROM car,trip_car WHERE trip_car.trip_id=? AND trip_car.car_id=car.id")) {
+						"SELECT car.* FROM car,trip_car WHERE trip_car.trip_id=? AND trip_car.car_id=car.id")) {
 			st.setInt(1, id);
 			try (ResultSet rs = st.executeQuery()) {
 				while (rs.next()) {
 					Car car = new Car();
 					int k = 1;
+					car.setId(rs.getInt(k++));
 					car.setCarNumber(rs.getString(k++));
 					log.debug("carNumber: {}", car.getCarNumber());
 					car.setMark(rs.getString(k++));
+					car.setPlaces(rs.getInt(k++));
+					
 					log.debug("carMark: {}", car.getMark());
 					cars.add(car);
 				}

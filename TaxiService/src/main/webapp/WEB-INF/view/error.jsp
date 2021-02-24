@@ -20,7 +20,7 @@
         <div class="col-12 col-sm-6 col-md-3 form-wrapper">
             <div class="form-container">
             	<c:if test="${empty errorMessage}">
-            		Something was wrong please reload page and try again.
+            		<fmt:message key="error.page.message"></fmt:message>
             	</c:if>
             	<c:if test="${not empty errorMessage}">
 	                ${errorMessage}

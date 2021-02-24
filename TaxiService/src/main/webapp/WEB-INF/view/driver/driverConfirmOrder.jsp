@@ -121,7 +121,7 @@
                 <form action="controller" method="get">
                     <input type="hidden" name="command" value="backToIndex" />
                     <div class="form-btn">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/>Cancel</button>
+                        <button class="btn btn-primary" type="submit"><fmt:message key="receipt.button.back.to.index"/></button>
                     </div>
                 </form>
         </div>

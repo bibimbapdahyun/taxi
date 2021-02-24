@@ -110,3 +110,18 @@
   top: 5px;
 }
 
+.form-cancel-grid{
+	display: grid;
+	justify-content
+}
+
+.form-cancel-center{
+	justify-conttent: center;
+	display: flex;
+}
+
+.form-btn-37{
+	bottom: 38px
+	
+}
+
